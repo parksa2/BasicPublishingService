@@ -46,11 +46,11 @@ def getStatus():
 @app.route('/upload/{fileName}', methods=['PUT'], content_types=['multipart/form-data'])
 def uploadToS3(fileName):
 	body = app.current_request.raw_body
-	tmpFileName = dirPath + fileName
+	tmpFileName = dirPath+'/' + fileName
 	with open(tmpFileName, 'wb') as file:
 		file.write(body)
 		file.close()
-	index =  dirPath+INDEX
+	index =  dirPath+'/'+INDEX
 	try:
 		s3Client.upload_file(tmpFileName, BUCKET, fileName, ExtraArgs={'ACL':'public-read'})
 	except:
@@ -58,7 +58,7 @@ def uploadToS3(fileName):
 	imgUrl= 'https://s3.amazonaws.com/'+BUCKET+'/'+fileName
 
 	with open(index, 'wb') as file:
-		file.write('<!DOCTYPE html><html><body><img src="'+fileName+'"></img></body></html>')
+		file.write('<!DOCTYPE html><html><body><img src="'+fileName+'"></body></html>')
 		file.close()
 	try:	
 		s3Client.upload_file(index, BUCKET, INDEX, ExtraArgs={'ACL':'public-read', 'ContentType':'text/html'})
