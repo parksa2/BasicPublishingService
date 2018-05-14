@@ -17,7 +17,7 @@ API documentation.
 
 1. API status.
 
-Method:GET URL: {/'status'} No URL params.
+Method:GET URL: /status No URL params.
 
 This resource checks the availablity of other resources. It returns a json object with two properties, newsStatus and awsStatus. 
 If there is a problem with accessing one or both of the appropriate resources, because of an invalid api key or invalid bucket, this will be reflected in
@@ -37,7 +37,7 @@ The aws status is determined by making a head_bucket call on the boto3 client wi
 
 Method:GET URL: /topNewsWords Optional URL params: 'maxWordCount', 'minWordLen'
 
-This resource maps the top words by usage from a number of sources in the news API. It uses a subclass of a python dictionary to keep track of the appearance of each word called a counter. The function loops through all the sources in the newsAPI object, sources field calling each for the top news. Then for each article, it parses the title of each article into seperate words and adds each word to the counter object if they don't exist with a count of 1 or it would add one to its current value with that word as a key, if the wordsize is greater than the minWordLen. minWordLen determines the minimum word size to be considered in the counter object. If its less than the midLen, it won't be added. After building the counter object, it returns only the most common determined by the counter function most_common and the optional input maxWordCount. The default for both maxWordCount and minWordLen is set by the config.
+This resource maps the top words by usage from a number of sources in the news API. It uses a subclass of a python dictionary to keep track of the appearance of each word called a counter. The function loops through all the sources in the newsAPI object, sources field calling each for the top news. Then for each article, it parses the title of each article into seperate words and adds each word to the counter object if they don't exist with a count of 1 or it would add one to its current value with that word as a key, if the wordsize is greater than or equal to the minWordLen. minWordLen determines the minimum word size to be considered in the counter object. If its less than the midLen, it won't be added. After building the counter object, it returns only the most common determined by the counter function most_common and the optional input maxWordCount. The default for both maxWordCount and minWordLen is set by the config.
 
 The call /topNewsWords?maxWordCount=2&minWordLen=4 might return 
 
