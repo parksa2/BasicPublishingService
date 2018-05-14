@@ -74,6 +74,8 @@ A caching system on the top news resource, so that it doesn't make several API c
 
 Programmatic creation of a bucket with the necessary permissions if required on the upload file resource. URL params for a user provided bucket instead of being hardcoded.
 
+Also, automatic timeouts.
+
 -
 
 If you have any questions, please do not hesitate to email me at parksa243@gmail.com 
