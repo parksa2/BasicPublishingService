@@ -70,7 +70,7 @@ Where 'index': 'index.html' and 'bucketName': 'andrew.parks.chalice'
 -
 Ideas for improvement
 
-A caching system on the top news resource, so that it doesn't make several API calls each time someone hits that resource. The news does not change that often, a singleton holding the counter object and only executing the API calls after a set amount of time has passed, busting the cache.
+A caching system on the top news resource, so that it doesn't make several API calls each time someone hits that resource. The news does not change that often, a singleton holding the counter object and only executing the API calls after a set amount of time has passed, busting the cache. Also, a url param to determine where the word counts come from such as either the title of the article or the article itself, instead of hardcoding the former. 
 
 Programmatic creation of a bucket with the necessary permissions if required on the upload file resource. URL params for a user provided bucket instead of being hardcoded.
 
